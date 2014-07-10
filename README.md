@@ -81,9 +81,76 @@ Sim. Isso também significa integrá-los ao processo de build.
  - Chai
  - Sinon.js
  - TestSwarm
+ - BrowserStack
+ - Istanbul
 
 ----
 
 ## Mãos à massa
 
 ![Show me, don't tell me](show-me.jpg)
+
+---
+
+### Stack utlizada
+
+ - Karma
+ - Mocha
+ - Chai (should)
+ - Sinon.js
+
+----
+
+## Configurando o Karma
+
+```
+npm install karma --save-dev
+npm install -g karma-cli
+
+# Plugins
+npm install
+> karma-mocha karma-chai karma-sinon karma-phantomjs-launcher
+> --save-dev
+```
+
+```
+karma init
+karma start
+```
+
+*karma.conf.js*
+
+```javascript
+module.exports = function(config) {
+  config.set({
+    // ...
+    frameworks: ['mocha', 'chai', 'sinon'],
+    files: [
+      'js/**/*.js',
+      'test/**/*.js'
+    ],
+    // ...
+```
+
+----
+
+## Criando o primeiro teste
+
+test/test.js
+
+```javascript
+describe("My first test suite", function() {
+
+  it('should fail', function() {
+    true.should.be.false;
+  });
+
+});
+```
+
+----
+
+## Criando os primeiros testes
+## (de verdade)
+
+Demo calculator.js
