@@ -15,7 +15,9 @@ Front In BH - 2014
 ## Quem somos?
 
  - **João Santana**
-  - // TODO
+  - UI Engineer na Avenue Code
+  - Ruby e JavaScript developer
+  - Empreendedor por insistência
 
  - **Rafael Guedes**
   - UI Engineer na Avenue Code
@@ -91,6 +93,35 @@ Sim. Isso também significa integrá-los ao processo de build.
 ![Show me, don't tell me](show-me.jpg)
 
 ---
+
+### Terminologia
+
+ - Spies
+  - Rastrear o contexto de funções executas
+  - Parâmetros
+  - return
+  - this
+  - exception
+
+
+----
+
+### Terminologia
+
+ - Stubs
+  - Spies com um comportamento pre-estabelecido
+ - Mocks
+  - TO DO
+
+----
+
+### Terminologia
+ - Fakes
+  - Mais simples do que Mocks
+  - Interface de objetos reais
+  - Exemplo: Google Maps object
+
+----
 
 ### Stack utlizada
 
