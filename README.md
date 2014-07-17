@@ -69,6 +69,7 @@ Sim. Isso também significa integrá-los ao processo de build.
 
  - QUnit
   - Focado em testar Javascript no browser
+  - Framework, Modules, Tests, Assertions
  - Jasmine
   - Baseado no RSpec
  - Mocha, Buster.js
@@ -82,6 +83,7 @@ Sim. Isso também significa integrá-los ao processo de build.
  - PhantomJS
  - Chai
  - Sinon.js
+  - Spies, Stubs, Mocks, FakeTimer, FakeXHR
  - TestSwarm
  - BrowserStack
  - Istanbul
