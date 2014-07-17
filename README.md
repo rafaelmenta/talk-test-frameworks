@@ -67,59 +67,100 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ## Ferramentas de testes
 
- - QUnit
-  - Focado em testar Javascript no browser
- - Jasmine
-  - Baseado no RSpec
- - Mocha, Buster.js
-  - Flexíveis e modulares
+![Ferramentas de testes](tools.jpg)
 
 ----
+
+![Jasmine](jasmine.png)
+![QUnit](qunit.png)
+![Mocha](mocha.png)
+![Buster](buster.png)
+
+
+----
+
+## Como escolher meu framework?
+
+ - Estável
+ - Comunidade
+ - Compatível com tecnologias do projeto
+ - Modular
+
+---
 
 ## Ferramentas utilitárias
 
- - Karma
- - PhantomJS
- - Chai
- - Sinon.js
- - TestSwarm
- - BrowserStack
- - Istanbul
+![Karma](karma.png)
+![PhantomJS](phantomjs.png)
+![Chai](chai.png)
+![BrowserStack](browserstack.png)
+![TestSwarm](testswarm.png)
+![Blanket.js](blanket.png)
+![Sinon.js](sinonjs.png)
 
 ----
+
+## Spies
+
+![Spies](spy.jpg)
+
+----
+
+## Spies
+
+- Funções que informam sobre funções executadas
+  - Chamadas
+  - Argumentos
+  - Contexto
+  - Retorno
+  - Exceções
+
+----
+
+## Stubs
+
+![Stubs](real-spy.jpg)
+
+----
+
+## Stubs
+
+- Spy com comportamento pré-estabelecido
+- ~Engana~ o fluxo do sistema
+  - Especialmente útil para código com dependências
+
+----
+
+## Mocks
+
+![Mocks](mocks.jpg)
+
+----
+
+## Mocks
+
+- Métodos com comportamento pré-estabelecido
+- Fazem seu código falhar se não forem executados corretamente
+
+----
+
+## Fakes
+
+![Fakes](fake.jpg)
+
+----
+
+## Fakes
+
+- Mais simples do que Mocks
+- Interface de objetos reais
+  - Ex: Google Maps object
+
+---
 
 ## Mãos à massa
 
 ![Show me, don't tell me](show-me.jpg)
-
----
-
-### Terminologia
-
- - Spies
-  - Rastrear o contexto de funções executas
-  - Parâmetros
-  - return
-  - this
-  - exception
-
-
-----
-
-### Terminologia
-
- - Stubs
-  - Spies com um comportamento pre-estabelecido
- - Mocks
-  - TO DO
-
-----
-
-### Terminologia
- - Fakes
-  - Mais simples do que Mocks
-  - Interface de objetos reais
-  - Exemplo: Google Maps object
 
 ----
 
