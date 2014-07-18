@@ -3,7 +3,7 @@ UI Test Frameworks
 
 <br>
 
- - João Santana
+ - João Lucas Santana
  - Rafael Guedes
 
 <br />
@@ -14,7 +14,7 @@ Front In BH - 2014
 
 ## Quem somos?
 
- - **João Santana**
+ - **João Lucas Santana**
   - UI Engineer na Avenue Code
   - Ruby e JavaScript developer
   - Empreendedor por insistência
@@ -67,6 +67,21 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ## Ferramentas de testes
 
+![Ferramentas de testes](tools.jpg)
+
+----
+
+## Ferramentas de testes
+
+![Jasmine](jasmine.png)
+![QUnit](qunit.png)
+![Mocha](mocha.png)
+![Buster](buster.png)
+
+----
+
+## Ferramentas de testes
+
  - QUnit
   - Focado em testar Javascript no browser
   - Framework, Modules, Tests, Assertions
@@ -77,7 +92,28 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ----
 
+## Como escolher meu framework?
+
+ - Estável
+ - Comunidade
+ - Compatível com tecnologias do projeto
+ - Modular
+
+---
+
 ## Ferramentas utilitárias
+
+![Karma](karma.png)
+![PhantomJS](phantomjs.png)
+![Chai](chai.png)
+![BrowserStack](browserstack.png)
+![TestSwarm](testswarm.png)
+![Blanket.js](blanket.png)
+![Sinon.js](sinonjs.png)
+
+----
+
+## Ferramentas de testes
 
  - Karma
  - PhantomJS
@@ -90,38 +126,67 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ----
 
-## Mãos à massa
+## Spies
 
-![Show me, don't tell me](show-me.jpg)
+![Spies](spy.jpg)
+
+----
+
+## Spies
+
+- Funções que informam sobre funções executadas
+  - Chamadas
+  - Argumentos
+  - Contexto
+  - Retorno
+  - Exceções
+
+----
+
+## Stubs
+
+![Stubs](real-spy.jpg)
+
+----
+
+## Stubs
+
+- Spy com comportamento pré-estabelecido
+- ~Engana~ o fluxo do sistema
+  - Especialmente útil para código com dependências
+
+----
+
+## Mocks
+
+![Mocks](mocks.jpg)
+
+----
+
+## Mocks
+
+- Métodos com comportamento pré-estabelecido
+- Fazem seu código falhar se não forem executados corretamente
+
+----
+
+## Fakes
+
+![Fakes](fake.jpg)
+
+----
+
+## Fakes
+
+- Mais simples do que Mocks
+- Interface de objetos reais
+  - Ex: Google Maps object
 
 ---
 
-### Terminologia
+## Mãos à massa
 
- - Spies
-  - Rastrear o contexto de funções executas
-  - Parâmetros
-  - return
-  - this
-  - exception
-
-
-----
-
-### Terminologia
-
- - Stubs
-  - Spies com um comportamento pre-estabelecido
- - Mocks
-  - TO DO
-
-----
-
-### Terminologia
- - Fakes
-  - Mais simples do que Mocks
-  - Interface de objetos reais
-  - Exemplo: Google Maps object
+![Show me, don't tell me](show-me.jpg)
 
 ----
 
