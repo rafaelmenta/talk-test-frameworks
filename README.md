@@ -67,16 +67,16 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ## Ferramentas de testes
 
-![Ferramentas de testes](tools.jpg)
+![Ferramentas de testes](img/tools.jpg)
 
 ----
 
 ## Ferramentas de testes
 
-![Jasmine](jasmine.png)
-![QUnit](qunit.png)
-![Mocha](mocha.png)
-![Buster](buster.png)
+![Jasmine](img/jasmine.png)
+![QUnit](img/qunit.png)
+![Mocha](img/mocha.png)
+![Buster](img/buster.png)
 
 ----
 
@@ -103,13 +103,13 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ## Ferramentas utilitárias
 
-![Karma](karma.png)
-![PhantomJS](phantomjs.png)
-![Chai](chai.png)
-![BrowserStack](browserstack.png)
-![TestSwarm](testswarm.png)
-![Blanket.js](blanket.png)
-![Sinon.js](sinonjs.png)
+![Karma](img/karma.png)
+![PhantomJS](img/phantomjs.png)
+![Chai](img/chai.png)
+![BrowserStack](img/browserstack.png)
+![TestSwarm](img/testswarm.png)
+![Blanket.js](img/blanket.png)
+![Sinon.js](img/sinonjs.png)
 
 ----
 
@@ -128,7 +128,7 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ## Spies
 
-![Spies](spy.jpg)
+![Spies](img/spy.jpg)
 
 ----
 
@@ -145,7 +145,7 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ## Stubs
 
-![Stubs](real-spy.jpg)
+![Stubs](img/real-spy.jpg)
 
 ----
 
@@ -159,7 +159,7 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ## Mocks
 
-![Mocks](mocks.jpg)
+![Mocks](img/mocks.jpg)
 
 ----
 
@@ -172,7 +172,7 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ## Fakes
 
-![Fakes](fake.jpg)
+![Fakes](img/fake.jpg)
 
 ----
 
@@ -186,7 +186,7 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ## Mãos à massa
 
-![Show me, don't tell me](show-me.jpg)
+![Show me, don't tell me](img/show-me.jpg)
 
 ----
 
