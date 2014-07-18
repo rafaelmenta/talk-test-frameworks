@@ -74,6 +74,26 @@ Sim. Isso também significa integrá-los ao processo de build.
 ## Ferramentas de testes
 
 ![Jasmine](img/jasmine.png)
+
+Matchers customizados, spies, async, clock
+
+```javascript
+describe("Calculator", function() {
+    var calc;
+    before(function() {
+        calc = Calculator();
+    });
+    it('should sum two numbers', function() {
+        var result = calc.add(2, 3);
+        result.should.equals(5);
+    });
+});
+```
+
+----
+
+## Ferramentas de testes
+
 ![QUnit](img/qunit.png)
 ![Mocha](img/mocha.png)
 ![Buster](img/buster.png)
@@ -85,8 +105,6 @@ Sim. Isso também significa integrá-los ao processo de build.
  - QUnit
   - Focado em testar Javascript no browser
   - Framework, Modules, Tests, Assertions
- - Jasmine
-  - Baseado no RSpec
  - Mocha, Buster.js
   - Flexíveis e modulares
 
