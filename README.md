@@ -3,8 +3,7 @@ UI Test Frameworks
 
 <br>
 
- - João Lucas Santana
- - Rafael Guedes
+João Lucas & Rafael Guedes 
 
 <br />
 
@@ -14,12 +13,18 @@ Front In BH - 2014
 
 ## Quem somos?
 
- - **João Lucas Santana**
+#### Não, não somos mais uma dupla sertaneja!
+
+----
+
+## Quem somos?
+
+ - **João Lucas Santana** ( @jlucasps )
   - UI Engineer na Avenue Code
   - Ruby e JavaScript developer
   - Empreendedor por insistência
 
- - **Rafael Guedes**
+ - **Rafael Guedes** ( @rafaelmenta )
   - UI Engineer na Avenue Code
   - Desenvolvimento web desde 2007
   - Testando em front-end desde 2013
@@ -75,7 +80,7 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ![Jasmine](img/jasmine.png)
 
-Matchers customizados, spies, async, clock
+- Matchers customizados, spies, async, clock
 
 ```javascript
 describe("Calculator", function() {
@@ -92,9 +97,31 @@ describe("Calculator", function() {
 
 ----
 
-## Ferramentas de testes
+## Ferrametnas de testes
 
 ![QUnit](img/qunit.png)
+
+- jQuery project
+- Focado em testar Javascript no browser
+- Framework, Modules, Tests, Assertions
+
+```javascript
+module( "Awesome module",{
+    setup: function() { 
+        calc = new Calc();
+    },
+    teardown: function() { }
+});
+test( "sum", function( ) {
+    deepEqual( calc.sum( 2, 4 ), 6, "Description" );
+    equal( calc.sum( 2, 4 ), "6", "Description" );
+});
+```
+
+----
+
+## Ferramentas de testes
+
 ![Mocha](img/mocha.png)
 ![Buster](img/buster.png)
 
@@ -102,9 +129,6 @@ describe("Calculator", function() {
 
 ## Ferramentas de testes
 
- - QUnit
-  - Focado em testar Javascript no browser
-  - Framework, Modules, Tests, Assertions
  - Mocha, Buster.js
   - Flexíveis e modulares
 

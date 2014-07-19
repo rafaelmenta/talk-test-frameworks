@@ -23,5 +23,4 @@ describe('Player', function() {
         player.should.not.have.property( 'currentSong' );
     });
 
-
 });
