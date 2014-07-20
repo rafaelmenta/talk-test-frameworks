@@ -3,8 +3,7 @@ UI Test Frameworks
 
 <br>
 
- - João Santana
- - Rafael Guedes
+João Lucas & Rafael Guedes 
 
 <br />
 
@@ -14,12 +13,18 @@ Front In BH - 2014
 
 ## Quem somos?
 
- - **João Santana**
+#### Não, não somos mais uma dupla sertaneja!
+
+----
+
+## Quem somos?
+
+ - **João Lucas Santana** ( @jlucasps )
   - UI Engineer na Avenue Code
   - Ruby e JavaScript developer
   - Empreendedor por insistência
 
- - **Rafael Guedes**
+ - **Rafael Guedes** ( @rafaelmenta )
   - UI Engineer na Avenue Code
   - Desenvolvimento web desde 2007
   - Testando em front-end desde 2013
@@ -67,15 +72,65 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ## Ferramentas de testes
 
-![Ferramentas de testes](tools.jpg)
+![Ferramentas de testes](img/tools.jpg)
 
 ----
 
-![Jasmine](jasmine.png)
-![QUnit](qunit.png)
-![Mocha](mocha.png)
-![Buster](buster.png)
+## Ferramentas de testes
 
+![Jasmine](img/jasmine.png)
+
+- Matchers customizados, spies, async, clock
+
+```javascript
+describe("Calculator", function() {
+    var calc;
+    before(function() {
+        calc = Calculator();
+    });
+    it('should sum two numbers', function() {
+        var result = calc.add(2, 3);
+        result.should.equals(5);
+    });
+});
+```
+
+----
+
+## Ferrametnas de testes
+
+![QUnit](img/qunit.png)
+
+- jQuery project
+- Focado em testar Javascript no browser
+- Framework, Modules, Tests, Assertions
+
+```javascript
+module( "Awesome module",{
+    setup: function() { 
+        calc = new Calc();
+    },
+    teardown: function() { }
+});
+test( "sum", function( ) {
+    deepEqual( calc.sum( 2, 4 ), 6, "Description" );
+    equal( calc.sum( 2, 4 ), "6", "Description" );
+});
+```
+
+----
+
+## Ferramentas de testes
+
+![Mocha](img/mocha.png)
+![Buster](img/buster.png)
+
+----
+
+## Ferramentas de testes
+
+ - Mocha, Buster.js
+  - Flexíveis e modulares
 
 ----
 
@@ -90,19 +145,32 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ## Ferramentas utilitárias
 
-![Karma](karma.png)
-![PhantomJS](phantomjs.png)
-![Chai](chai.png)
-![BrowserStack](browserstack.png)
-![TestSwarm](testswarm.png)
-![Blanket.js](blanket.png)
-![Sinon.js](sinonjs.png)
+![Karma](img/karma.png)
+![PhantomJS](img/phantomjs.png)
+![Chai](img/chai.png)
+![BrowserStack](img/browserstack.png)
+![TestSwarm](img/testswarm.png)
+![Blanket.js](img/blanket.png)
+![Sinon.js](img/sinonjs.png)
+
+----
+
+## Ferramentas de testes
+
+ - Karma
+ - PhantomJS
+ - Chai
+ - Sinon.js
+  - Spies, Stubs, Mocks, FakeTimer, FakeXHR
+ - TestSwarm
+ - BrowserStack
+ - Istanbul
 
 ----
 
 ## Spies
 
-![Spies](spy.jpg)
+![Spies](img/spy.jpg)
 
 ----
 
@@ -119,7 +187,7 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ## Stubs
 
-![Stubs](real-spy.jpg)
+![Stubs](img/real-spy.jpg)
 
 ----
 
@@ -133,7 +201,7 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ## Mocks
 
-![Mocks](mocks.jpg)
+![Mocks](img/mocks.jpg)
 
 ----
 
@@ -146,7 +214,7 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ## Fakes
 
-![Fakes](fake.jpg)
+![Fakes](img/fake.jpg)
 
 ----
 
@@ -160,7 +228,7 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ## Mãos à massa
 
-![Show me, don't tell me](show-me.jpg)
+![Show me, don't tell me](img/show-me.jpg)
 
 ----
 
