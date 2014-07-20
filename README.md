@@ -327,4 +327,80 @@ describe("My first test suite", function() {
 ## Criando os primeiros testes
 ## (de verdade)
 
-Demo calculator.js
+Arquivo ```js/song.js```
+
+```javascript
+var Song = function( duration ) {
+    this.duration = duration; // in seconds
+    this.isPlaying = false;
+};
+
+Song.prototype.play = function() {
+    this.isPlaying = true;
+};
+```
+
+----
+
+## Criando os primeiros testes
+
+Arquivo ```test/song.js```
+
+```describe```, ```beforeEach``` e ```expect().to.be.true```
+
+```javascript
+describe('Song', function() {
+    var song;
+    beforeEach( function() {
+        song = new Song( 154 );
+    } );
+    it('should be a function', function() {
+        Song.should.be.a("function");
+    });
+    it('should be playing after call play()', function() {
+        song.play();
+        expect(song.isPlaying).to.be.true;
+    });
+});
+```
+
+----
+
+## Comportamento assíncrono
+
+Arquivo ```test/song.js```
+
+```javascript
+Song.prototype.play = function() {
+    var self = this;
+    this.isPlaying = true;
+    this.timer = setTimeout( function() {
+        self.nextSong( self );
+    }, this.duration * 1000 );
+};
+Song.prototype.nextSong = function( self ) {
+    self.isPlaying = false;
+    clearTimeout( self.timer );
+    self.player.playNext();
+};
+```
+
+----
+
+## Clock e stubs
+
+Sinon.js para alterar o clock e utilizar stubs
+
+```javascript
+it( 'should call nextSong after X seconts', function( ) {
+    var clock = sinon.useFakeTimers();
+    sinon.stub( Song.prototype, 'nextSong' );
+
+    song.play();
+    clock.tick( song.duration * 1000 );
+
+    expect( song.nextSong.calledOnce ).to.be.true;
+    clock.restore();
+} );
+
+```
