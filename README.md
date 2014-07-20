@@ -106,16 +106,18 @@ describe("Calculator", function() {
 - Framework, Modules, Tests, Assertions
 
 ```javascript
-module( "Awesome module",{
+var calc;
+module( "Awesome module", {
     setup: function() { 
         calc = new Calc();
     },
     teardown: function() { }
-});
+} );
+
 test( "sum", function( ) {
     deepEqual( calc.sum( 2, 4 ), 6, "Description" );
     equal( calc.sum( 2, 4 ), "6", "Description" );
-});
+} );
 ```
 
 ----
@@ -123,14 +125,46 @@ test( "sum", function( ) {
 ## Ferramentas de testes
 
 ![Mocha](img/mocha.png)
-![Buster](img/buster.png)
+
+- Framework flexível e modular para node.js e browser
+- Testes async e promisses
+- Hooks ``` before, beforeEach, after, afterEach```
+
+```javascript
+describe("a test", function() {
+    var foo = false;
+    beforeEach(function(done) {
+        setTimeout(function() {
+            foo = true;
+            done();
+        }, 50);
+    });
+    it("should pass", function() {
+        expect(foo).equals(true);
+    });
+});
+```
 
 ----
 
 ## Ferramentas de testes
 
- - Mocha, Buster.js
-  - Flexíveis e modulares
+![Buster](img/buster.png)
+
+- Framework flexível e modular para node.js e browser
+- Integrado com Sinon.JS
+
+```javascript
+buster.spec.expose();
+describe("My thing", function () {
+    it("has the foo and bar", function () {
+        expect("foo").toEqual("bar");
+    });
+    it("states the obvious", function () {
+        expect(true).toBe(true);;
+    });
+});
+```
 
 ----
 
