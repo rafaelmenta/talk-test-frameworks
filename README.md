@@ -392,7 +392,7 @@ Song.prototype.nextSong = function( self ) {
 Sinon.js para alterar o clock e utilizar stubs
 
 ```javascript
-it( 'should call nextSong after X seconts', function( ) {
+it( 'should call nextSong after X seconds', function( ) {
     var clock = sinon.useFakeTimers();
     sinon.stub( Song.prototype, 'nextSong' );
 
