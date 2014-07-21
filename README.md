@@ -3,7 +3,7 @@ UI Test Frameworks
 
 <br>
 
-João Lucas & Rafael Guedes 
+João Lucas & Rafael Guedes
 
 <br />
 
@@ -108,7 +108,7 @@ describe("Calculator", function() {
 ```javascript
 var calc;
 module( "Awesome module", {
-    setup: function() { 
+    setup: function() {
         calc = new Calc();
     },
     teardown: function() { }
@@ -327,4 +327,155 @@ describe("My first test suite", function() {
 ## Criando os primeiros testes
 ## (de verdade)
 
-Demo calculator.js
+Arquivo ```js/song.js```
+
+```javascript
+var Song = function( duration ) {
+    this.duration = duration; // in seconds
+    this.isPlaying = false;
+};
+
+Song.prototype.play = function() {
+    this.isPlaying = true;
+};
+```
+
+----
+
+## Criando os primeiros testes
+
+Arquivo ```test/song.js```
+
+```describe```, ```beforeEach``` e ```expect().to.be.true```
+
+```javascript
+describe('Song', function() {
+    var song;
+    beforeEach( function() {
+        song = new Song( 154 );
+    } );
+    it('should be a function', function() {
+        Song.should.be.a("function");
+    });
+    it('should be playing after call play()', function() {
+        song.play();
+        expect(song.isPlaying).to.be.true;
+    });
+});
+```
+
+----
+
+## Comportamento assíncrono
+
+Arquivo ```test/song.js```
+
+```javascript
+Song.prototype.play = function() {
+    var self = this;
+    this.isPlaying = true;
+    this.timer = setTimeout( function() {
+        self.nextSong( self );
+    }, this.duration * 1000 );
+};
+Song.prototype.nextSong = function( self ) {
+    self.isPlaying = false;
+    clearTimeout( self.timer );
+    self.player.playNext();
+};
+```
+
+----
+
+## Clock e stubs
+
+Sinon.js para alterar o clock e utilizar stubs
+
+```javascript
+it( 'should call nextSong after X seconts', function( ) {
+    var clock = sinon.useFakeTimers();
+    sinon.stub( Song.prototype, 'nextSong' );
+
+    song.play();
+    clock.tick( song.duration * 1000 );
+
+    expect( song.nextSong.calledOnce ).to.be.true;
+    clock.restore();
+} );
+
+```
+
+----
+
+## Spies
+
+Classe ```js/player.js```
+
+```javascript
+var Player = function( ) {
+    this.currentSongIndex = -1;
+};
+Player.prototype.play = function( media ) {
+    if ( Array.isArray( media ) ) {
+        this.playList = media;
+    } else if ( media instanceof Song ) {
+        this.singleSong = media;
+    }
+    this.playNext();
+};
+```
+
+----
+
+## Spies
+
+Método ```playNext()``` da class ```Player```
+
+```
+Player.prototype.playNext = function() {
+    var currentSong;
+    if ( this.singleSong || this.playList) {
+        this.currentSongIndex += 1;
+        if ( this.singleSong && this.currentSongIndex === 0 ) {
+            currentSong = this.singleSong;
+        } else if ( this.playList && this.currentSongIndex < this.playList.lenght ) {
+            currentSong = this.playList[this.currentSongIndex];
+        }
+        if ( currentSong instanceof Song ) {
+            currentSong.player = this;
+            currentSong.play();
+        }
+    }
+    return currentSong;
+};
+```
+
+----
+
+## Spies
+
+Testes com spies: ```test/player.js```
+
+```javascript
+  describe( 'when playing a single song', function() {
+      it( 'should play the only song and exit the player', function() {
+          var clock = sinon.useFakeTimers(),
+              player = new Player(),
+              song = new Song( 120 ),
+              playNextSpy = sinon.spy( player, 'playNext' ),
+              playSpy = sinon.spy(song, 'play');
+          player.play( song );
+          clock.tick( song.duration * 1000 );
+          expect( song.play.calledOnce ).to.be.true;
+          expect( playNextSpy.calledTwice ).to.be.true;
+          expect( playNextSpy.returnValues[0] ).to.deep.equal( song );
+          expect( playNextSpy.returnValues[1] ).to.deep.equal( undefined );
+          playNextSpy.restore();
+          clock.restore();
+      } )
+  } );
+
+```
+
+
+
