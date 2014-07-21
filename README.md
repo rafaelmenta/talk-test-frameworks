@@ -78,20 +78,22 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ## Ferramentas de testes
 
-![Jasmine](img/jasmine.png)
+[![Jasmine](img/jasmine.png)](http://jasmine.github.io/)
 
 - Matchers customizados, spies, async, clock
 
 ```javascript
 describe("Calculator", function() {
-    var calc;
-    before(function() {
-        calc = Calculator();
-    });
-    it('should sum two numbers', function() {
-        var result = calc.add(2, 3);
-        result.should.equals(5);
-    });
+  var calc;
+
+  beforeEach(function() {
+    calc = Calculator();
+  });
+
+  it('should sum two numbers', function() {
+    var result = calc.add(2, 3);
+    expect(result).toEqual(5);
+  });
 });
 ```
 
@@ -99,24 +101,24 @@ describe("Calculator", function() {
 
 ## Ferrametnas de testes
 
-![QUnit](img/qunit.png)
+[![QUnit](img/qunit.png)](http://qunitjs.com/)
 
 - jQuery project
 - Focado em testar Javascript no browser
-- Framework, Modules, Tests, Assertions
 
 ```javascript
 var calc;
-module( "Awesome module", {
-    setup: function() {
-        calc = new Calc();
-    },
-    teardown: function() { }
-} );
+module('Awesome module', {
+  setup: function() {
+    calc = new Calc();
+  },
 
-test( "sum", function( ) {
-    deepEqual( calc.sum( 2, 4 ), 6, "Description" );
-    equal( calc.sum( 2, 4 ), "6", "Description" );
+  teardown: function() { }
+});
+
+test('sum', function( ) {
+  deepEqual(calc.sum(2, 4), 6, 'Description');
+  equal(calc.sum(2, 4), '6', 'Description');
 } );
 ```
 
@@ -124,24 +126,25 @@ test( "sum", function( ) {
 
 ## Ferramentas de testes
 
-![Mocha](img/mocha.png)
+[![Mocha](img/mocha.png)](http://visionmedia.github.io/mocha/)
 
 - Framework flexível e modular para node.js e browser
-- Testes async e promisses
-- Hooks ``` before, beforeEach, after, afterEach```
+- Promise test, ```before``` & ```after``` hooks
 
 ```javascript
-describe("a test", function() {
-    var foo = false;
-    beforeEach(function(done) {
-        setTimeout(function() {
-            foo = true;
-            done();
-        }, 50);
+describe("a promise test", function() {
+  before(function() { return db.save([mark, loki, jane]); });
+
+  it('should give me correct user count with callback', function(done) {
+    db.find({ type: 'User'}).then(function(data, err) {
+      data.length.should.equal(3);
+      done();
     });
-    it("should pass", function() {
-        expect(foo).equals(true);
-    });
+  });
+
+  it('should give me correct user count with promise', function() {
+    db.find({ type: 'User' }).should.eventually.have.length(3);
+  });
 });
 ```
 
@@ -149,7 +152,7 @@ describe("a test", function() {
 
 ## Ferramentas de testes
 
-![Buster](img/buster.png)
+[![Buster](img/buster.png)](http://docs.busterjs.org/en/latest/#)
 
 - Framework flexível e modular para node.js e browser
 - Integrado com Sinon.JS
@@ -157,12 +160,15 @@ describe("a test", function() {
 ```javascript
 buster.spec.expose();
 describe("My thing", function () {
-    it("has the foo and bar", function () {
-        expect("foo").toEqual("bar");
-    });
-    it("states the obvious", function () {
-        expect(true).toBe(true);;
-    });
+
+  it("has the foo and bar", function () {
+    expect("foo").toEqual("bar");
+  });
+
+  it("states the obvious", function () {
+    expect(true).toBe(true);;
+  });
+
 });
 ```
 
@@ -179,26 +185,13 @@ describe("My thing", function () {
 
 ## Ferramentas utilitárias
 
-![Karma](img/karma.png)
-![PhantomJS](img/phantomjs.png)
-![Chai](img/chai.png)
-![BrowserStack](img/browserstack.png)
-![TestSwarm](img/testswarm.png)
-![Blanket.js](img/blanket.png)
-![Sinon.js](img/sinonjs.png)
-
-----
-
-## Ferramentas de testes
-
- - Karma
- - PhantomJS
- - Chai
- - Sinon.js
-  - Spies, Stubs, Mocks, FakeTimer, FakeXHR
- - TestSwarm
- - BrowserStack
- - Istanbul
+[![Karma](img/karma.png)](http://karma-runner.github.io/)
+[![PhantomJS](img/phantomjs.png)](http://phantomjs.org/)
+[![Chai](img/chai.png)](http://chaijs.com/)
+[![BrowserStack](img/browserstack.png)](http://www.browserstack.com/)
+[![TestSwarm](img/testswarm.png)](http://testswarm.signalr.net/)
+[![Blanket.js](img/blanket.png)](http://blanketjs.org/)
+[![Sinon.js](img/sinonjs.png)](http://sinonjs.org/)
 
 ----
 
