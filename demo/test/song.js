@@ -15,13 +15,14 @@ describe('Song', function() {
     });
 
     it( 'should call nextSong after X seconts', function( ) {
-        var clock = sinon.useFakeTimers();
-        sinon.stub( Song.prototype, 'nextSong' );
+        var clock = sinon.useFakeTimers(),
+            nextSong = sinon.stub( Song.prototype, 'nextSong' );
 
         song.play();
         clock.tick( song.duration * 1000 );
-        
+
         expect( song.nextSong.calledOnce ).to.be.true;
+        nextSong.restore();
         clock.restore();
     } );
 

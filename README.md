@@ -3,7 +3,7 @@ UI Test Frameworks
 
 <br>
 
-João Lucas & Rafael Guedes 
+João Lucas & Rafael Guedes
 
 <br />
 
@@ -108,7 +108,7 @@ describe("Calculator", function() {
 ```javascript
 var calc;
 module( "Awesome module", {
-    setup: function() { 
+    setup: function() {
         calc = new Calc();
     },
     teardown: function() { }
@@ -404,3 +404,78 @@ it( 'should call nextSong after X seconts', function( ) {
 } );
 
 ```
+
+----
+
+## Spies
+
+Classe ```js/player.js```
+
+```javascript
+var Player = function( ) {
+    this.currentSongIndex = -1;
+};
+Player.prototype.play = function( media ) {
+    if ( Array.isArray( media ) ) {
+        this.playList = media;
+    } else if ( media instanceof Song ) {
+        this.singleSong = media;
+    }
+    this.playNext();
+};
+```
+
+----
+
+## Spies
+
+Método ```playNext()``` da class ```Player```
+
+```
+Player.prototype.playNext = function() {
+    var currentSong;
+    if ( this.singleSong || this.playList) {
+        this.currentSongIndex += 1;
+        if ( this.singleSong && this.currentSongIndex === 0 ) {
+            currentSong = this.singleSong;
+        } else if ( this.playList && this.currentSongIndex < this.playList.lenght ) {
+            currentSong = this.playList[this.currentSongIndex];
+        }
+        if ( currentSong instanceof Song ) {
+            currentSong.player = this;
+            currentSong.play();
+        }
+    }
+    return currentSong;
+};
+```
+
+----
+
+## Spies
+
+Testes com spies: ```test/player.js```
+
+```javascript
+  describe( 'when playing a single song', function() {
+      it( 'should play the only song and exit the player', function() {
+          var clock = sinon.useFakeTimers(),
+              player = new Player(),
+              song = new Song( 120 ),
+              playNextSpy = sinon.spy( player, 'playNext' ),
+              playSpy = sinon.spy(song, 'play');
+          player.play( song );
+          clock.tick( song.duration * 1000 );
+          expect( song.play.calledOnce ).to.be.true;
+          expect( playNextSpy.calledTwice ).to.be.true;
+          expect( playNextSpy.returnValues[0] ).to.deep.equal( song );
+          expect( playNextSpy.returnValues[1] ).to.deep.equal( undefined );
+          playNextSpy.restore();
+          clock.restore();
+      } )
+  } );
+
+```
+
+
+
