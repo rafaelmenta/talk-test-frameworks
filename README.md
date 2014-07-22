@@ -324,12 +324,12 @@ Arquivo ```js/song.js```
 
 ```javascript
 var Song = function( duration ) {
-  this.duration = duration; // in seconds
+  this.duration = duration;     // In seconds
   this.isPlaying = false;
 };
 
 Song.prototype.play = function() {
-  this.isPlaying = true;
+  this.isPlaying = true;      // Song is playing
 };
 ```
 
@@ -369,16 +369,36 @@ Arquivo ```test/song.js```
 ```javascript
 Song.prototype.play = function() {
   var self = this;
-  this.isPlaying = true;
+  this.isPlaying = true;                // Song is playing
   this.timer = setTimeout( function() {
-    self.nextSong.call( self );
+    self.nextSong.call( self );         // Play next song
+  }, this.duration * 1000 );            // after X seconds
+};
+
+Song.prototype.nextSong = function( ) {
+  this.isPlaying = false;             // Song isn't playing
+  clearTimeout( this.timer );
+  this.player.playNext();             // Play next song
+};
+```
+
+----
+
+## Comportamento assíncrono
+
+Como verificar que ```nextSong()``` será chamada?
+
+```javascript
+Song.prototype.play = function() {
+  // ...
+  this.timer = setTimeout( function() {
+    self.nextSong.call( self );       // Async call
   }, this.duration * 1000 );
 };
 
 Song.prototype.nextSong = function( ) {
-  this.isPlaying = false;
-  clearTimeout( this.timer );
-  this.player.playNext();
+  // ...
+  this.player.playNext();             // Dependencies
 };
 ```
 
@@ -389,14 +409,19 @@ Song.prototype.nextSong = function( ) {
 Sinon.js para alterar o clock e utilizar stubs
 
 ```javascript
+var song;
+beforeEach( function() {
+  song = new Song( 120 ); // 2 minutes
+} );
+
 it( 'should call nextSong after X seconds', function( ) {
   var clock = sinon.useFakeTimers();
-  sinon.stub( Song.prototype, 'nextSong' );
+  sinon.stub( Song.prototype, 'nextSong' ); // Song.prototype
 
   song.play();
   clock.tick( song.duration * 1000 );
 
-  expect( song.nextSong.calledOnce ).to.be.true;
+  expect( song.nextSong.calledOnce ).to.be.true; // object song
   clock.restore();
 } );
 
