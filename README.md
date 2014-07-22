@@ -259,6 +259,27 @@ describe("My thing", function () {
 
 ----
 
+## Cenário
+
+Player de música
+
+```javascript
+var player = new Player(),    // Music player
+    song = new Song( 120 ),   // single song
+    playList = [              // playlist
+      new Song( 112 ),
+      new Song( 145 ),
+      new Song( 88 )
+    ];
+
+player.play( song );          // play and quit
+
+player.play( playList );      // play in sequence
+
+```
+
+----
+
 ### Stack utlizada
 
  - Karma
