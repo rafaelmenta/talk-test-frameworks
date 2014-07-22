@@ -2,7 +2,7 @@ describe('Song', function() {
 
     var song;
     beforeEach( function() {
-        song = new Song( 1.5 );
+        song = new Song( 120 );
     } );
 
     it('should be a function', function() {

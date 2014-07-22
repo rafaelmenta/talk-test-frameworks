@@ -265,6 +265,27 @@ describe("My thing", function () {
 
 ----
 
+## Cenário
+
+Player de música
+
+```javascript
+var player = new Player(),    // Music player
+    song = new Song( 120 ),   // single song
+    playList = [              // playlist
+      new Song( 112 ),
+      new Song( 145 ),
+      new Song( 88 )
+    ];
+
+player.play( song );          // play and quit
+
+player.play( playList );      // play in sequence
+
+```
+
+----
+
 ### Stack utlizada
 
  - Karma
@@ -330,12 +351,12 @@ Arquivo ```js/song.js```
 
 ```javascript
 var Song = function( duration ) {
-  this.duration = duration; // in seconds
+  this.duration = duration;     // In seconds
   this.isPlaying = false;
 };
 
 Song.prototype.play = function() {
-  this.isPlaying = true;
+  this.isPlaying = true;      // Song is playing
 };
 ```
 
@@ -375,16 +396,36 @@ Arquivo ```test/song.js```
 ```javascript
 Song.prototype.play = function() {
   var self = this;
-  this.isPlaying = true;
+  this.isPlaying = true;                // Song is playing
   this.timer = setTimeout( function() {
-      self.nextSong( self );
+    self.nextSong.call( self );         // Play next song
+  }, this.duration * 1000 );            // after X seconds
+};
+
+Song.prototype.nextSong = function( ) {
+  this.isPlaying = false;             // Song isn't playing
+  clearTimeout( this.timer );
+  this.player.playNext();             // Play next song
+};
+```
+
+----
+
+## Comportamento assíncrono
+
+Como verificar que ```nextSong()``` será chamada?
+
+```javascript
+Song.prototype.play = function() {
+  // ...
+  this.timer = setTimeout( function() {
+    self.nextSong.call( self );       // Async call
   }, this.duration * 1000 );
 };
 
-Song.prototype.nextSong = function( self ) {
-  self.isPlaying = false;
-  clearTimeout( self.timer );
-  self.player.playNext();
+Song.prototype.nextSong = function( ) {
+  // ...
+  this.player.playNext();             // Dependencies
 };
 ```
 
@@ -395,14 +436,19 @@ Song.prototype.nextSong = function( self ) {
 Sinon.js para alterar o clock e utilizar stubs
 
 ```javascript
+var song;
+beforeEach( function() {
+  song = new Song( 120 ); // 2 minutes
+} );
+
 it( 'should call nextSong after X seconds', function( ) {
   var clock = sinon.useFakeTimers();
-  sinon.stub( Song.prototype, 'nextSong' );
+  sinon.stub( Song.prototype, 'nextSong' ); // Song.prototype
 
   song.play();
   clock.tick( song.duration * 1000 );
 
-  expect( song.nextSong.calledOnce ).to.be.true;
+  expect( song.nextSong.calledOnce ).to.be.true; // object song
   clock.restore();
 } );
 
@@ -421,11 +467,11 @@ var Player = function( ) {
 
 Player.prototype.play = function( media ) {
   if ( Array.isArray( media ) ) {
-    this.playList = media;
+    this.playList = media;            // Save playlist
   } else if ( media instanceof Song ) {
-    this.singleSong = media;
+    this.singleSong = media;          // Save a single song
   }
-  this.playNext();
+  this.playNext();                    // Start playing
 };
 ```
 
@@ -435,24 +481,50 @@ Player.prototype.play = function( media ) {
 
 Método ```playNext()``` da class ```Player```
 
-```
+```javascript
 Player.prototype.playNext = function() {
-  var currentSong;
+  var currentSong;                    // Song to play
   if ( this.singleSong || this.playList) {
     this.currentSongIndex += 1;
     if ( this.singleSong && this.currentSongIndex === 0 ) {
-      currentSong = this.singleSong;
+      currentSong = this.singleSong;  // Play single song
     } else if ( this.playList && this.currentSongIndex < this.playList.lenght ) {
-      currentSong = this.playList[this.currentSongIndex];
+      currentSong = this.playList[this.currentSongIndex]; // From playlist
     }
     if ( currentSong instanceof Song ) {
       currentSong.player = this;
-      currentSong.play();
+      currentSong.play();           // Song will play
     }
   }
-  return currentSong;
+  return currentSong;               // Song playing
 };
 ```
+
+----
+
+# Spies
+
+Como verificar que ```return currentSong;``` está correto?
+
+```javascript
+Player.prototype.playNext = function() {
+  var currentSong;
+  if ( /* single or playlist ? */ ) {
+
+    if ( this.singleSong ) {
+      // Save single song
+
+    } else if ( this.playList ) {
+
+      // Save from playlist
+    }
+
+    currentSong.play();             // Song will play
+  }
+  return currentSong;               // Return song playing
+};
+```
+
 
 ----
 
@@ -461,25 +533,53 @@ Player.prototype.playNext = function() {
 Testes com spies: ```test/player.js```
 
 ```javascript
-describe( 'when playing a single song', function() {
-  it( 'should play the only song and exit the player', function() {
-    var clock = sinon.useFakeTimers(),
-        player = new Player(),
-        song = new Song( 120 ),
-        playNextSpy = sinon.spy( player, 'playNext' ),
-        playSpy = sinon.spy(song, 'play');
-    player.play( song );
-    clock.tick( song.duration * 1000 );
-    expect( song.play.calledOnce ).to.be.true;
-    expect( playNextSpy.calledTwice ).to.be.true;
-    expect( playNextSpy.returnValues[0] ).to.deep.equal( song );
-    expect( playNextSpy.returnValues[1] ).to.deep.equal( undefined );
-    playNextSpy.restore();
-    clock.restore();
-    });
+it( 'should play the only song and exit the player', function() {
+  var clock = sinon.useFakeTimers(),
+      player = new Player(), song = new Song( 120 ),
+      playNextSpy = sinon.spy( player, 'playNext' ),
+      playSpy = sinon.spy(song, 'play');
+
+  player.play( song );
+  clock.tick( song.duration * 1000 );
+
+  expect( song.play.calledOnce ).to.be.true;
+  expect( playNextSpy.calledTwice ).to.be.true;
+  expect( playNextSpy.returnValues[0] ).to.deep.equal( song );
+  expect( playNextSpy.returnValues[1] ).to.deep.equal( undefined );
+
+  playNextSpy.restore();
+  clock.restore();
 });
 
 ```
 
+---
 
+## Perguntas? Comentários?
 
+![Perguntas? Comentários?](img/questions.gif)
+
+----
+
+## UI Test Frameworks
+
+[![Avenue Code](img/avenuecode.jpg)](http://www.avenuecode.com.br/)
+
+```javascript
+describe( "AVENUE CODE", function() {
+  it( "IS HIRING!", function() {
+
+    expect( attendance ).to.send( CV.pdf );
+
+    expect( myself ).to.win( iPod.SHUFFLE );
+
+  } );
+} );
+
+```
+
+<br>
+
+João Lucas ( @jlucasps ) & Rafael Guedes ( @rafaelmenta )
+
+Front In BH - 2014
