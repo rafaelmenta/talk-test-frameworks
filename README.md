@@ -105,7 +105,7 @@ describe("Calculator", function() {
 
 ----
 
-## Ferrametnas de testes
+## Ferramentas de testes
 
 [![QUnit](img/qunit.png)](http://qunitjs.com/)
 
@@ -479,31 +479,6 @@ Player.prototype.play = function( media ) {
 
 ## Spies
 
-Método ```playNext()``` da class ```Player```
-
-```javascript
-Player.prototype.playNext = function() {
-  var currentSong;                    // Song to play
-  if ( this.singleSong || this.playList) {
-    this.currentSongIndex += 1;
-    if ( this.singleSong && this.currentSongIndex === 0 ) {
-      currentSong = this.singleSong;  // Play single song
-    } else if ( this.playList && this.currentSongIndex < this.playList.lenght ) {
-      currentSong = this.playList[this.currentSongIndex]; // From playlist
-    }
-    if ( currentSong instanceof Song ) {
-      currentSong.player = this;
-      currentSong.play();           // Song will play
-    }
-  }
-  return currentSong;               // Song playing
-};
-```
-
-----
-
-# Spies
-
 Como verificar que ```return currentSong;``` está correto?
 
 ```javascript
@@ -525,6 +500,31 @@ Player.prototype.playNext = function() {
 };
 ```
 
+
+----
+
+## Spies
+
+Método ```playNext()``` da class ```Player```
+
+```javascript
+Player.prototype.playNext = function() {
+  var currentSong;                    // Song to play
+  if ( this.singleSong || this.playList) {
+    this.currentSongIndex += 1;
+    if ( this.singleSong && this.currentSongIndex === 0 ) {
+      currentSong = this.singleSong;  // Play single song
+    } else if ( this.playList && this.currentSongIndex < this.playList.lenght ) {
+      currentSong = this.playList[this.currentSongIndex]; // From playlist
+    }
+    if ( currentSong instanceof Song ) {
+      currentSong.player = this;
+      currentSong.play();           // Song will play
+    }
+  }
+  return currentSong;               // Song playing
+};
+```
 
 ----
 
