@@ -440,11 +440,11 @@ var Player = function( ) {
 
 Player.prototype.play = function( media ) {
   if ( Array.isArray( media ) ) {
-    this.playList = media;
+    this.playList = media;            // Save playlist
   } else if ( media instanceof Song ) {
-    this.singleSong = media;
+    this.singleSong = media;          // Save a single song
   }
-  this.playNext();
+  this.playNext();                    // Start playing
 };
 ```
 
@@ -454,24 +454,50 @@ Player.prototype.play = function( media ) {
 
 Método ```playNext()``` da class ```Player```
 
-```
+```javascript
 Player.prototype.playNext = function() {
-  var currentSong;
+  var currentSong;                    // Song to play
   if ( this.singleSong || this.playList) {
     this.currentSongIndex += 1;
     if ( this.singleSong && this.currentSongIndex === 0 ) {
-      currentSong = this.singleSong;
+      currentSong = this.singleSong;  // Play single song
     } else if ( this.playList && this.currentSongIndex < this.playList.lenght ) {
-      currentSong = this.playList[this.currentSongIndex];
+      currentSong = this.playList[this.currentSongIndex]; // From playlist
     }
     if ( currentSong instanceof Song ) {
       currentSong.player = this;
-      currentSong.play();
+      currentSong.play();           // Song will play
     }
   }
-  return currentSong;
+  return currentSong;               // Song playing
 };
 ```
+
+----
+
+# Spies
+
+Como verificar que ```return currentSong;``` está correto?
+
+```javascript
+Player.prototype.playNext = function() {
+  var currentSong;
+  if ( /* single or playlist ? */ ) {
+
+    if ( this.singleSong ) {
+      // Save single song
+
+    } else if ( this.playList ) {
+
+      // Save from playlist
+    }
+
+    currentSong.play();             // Song will play
+  }
+  return currentSong;               // Return song playing
+};
+```
+
 
 ----
 
@@ -480,22 +506,22 @@ Player.prototype.playNext = function() {
 Testes com spies: ```test/player.js```
 
 ```javascript
-describe( 'when playing a single song', function() {
-  it( 'should play the only song and exit the player', function() {
-    var clock = sinon.useFakeTimers(),
-        player = new Player(),
-        song = new Song( 120 ),
-        playNextSpy = sinon.spy( player, 'playNext' ),
-        playSpy = sinon.spy(song, 'play');
-    player.play( song );
-    clock.tick( song.duration * 1000 );
-    expect( song.play.calledOnce ).to.be.true;
-    expect( playNextSpy.calledTwice ).to.be.true;
-    expect( playNextSpy.returnValues[0] ).to.deep.equal( song );
-    expect( playNextSpy.returnValues[1] ).to.deep.equal( undefined );
-    playNextSpy.restore();
-    clock.restore();
-    });
+it( 'should play the only song and exit the player', function() {
+  var clock = sinon.useFakeTimers(),
+      player = new Player(), song = new Song( 120 ),
+      playNextSpy = sinon.spy( player, 'playNext' ),
+      playSpy = sinon.spy(song, 'play');
+
+  player.play( song );
+  clock.tick( song.duration * 1000 );
+
+  expect( song.play.calledOnce ).to.be.true;
+  expect( playNextSpy.calledTwice ).to.be.true;
+  expect( playNextSpy.returnValues[0] ).to.deep.equal( song );
+  expect( playNextSpy.returnValues[1] ).to.deep.equal( undefined );
+
+  playNextSpy.restore();
+  clock.restore();
 });
 
 ```
