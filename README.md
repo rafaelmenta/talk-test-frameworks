@@ -526,5 +526,33 @@ it( 'should play the only song and exit the player', function() {
 
 ```
 
+---
 
+## Perguntas? Comentários?
 
+![Perguntas? Comentários?](img/questions.gif)
+
+----
+
+## UI Test Frameworks
+
+[![Avenue Code](img/avenuecode.jpg)](http://www.avenuecode.com.br/)
+
+```javascript
+describe( "AVENUE CODE", function() {
+  it( "IS HIRING!", function() {
+
+    expect( attendance ).to.send( CV.pdf );
+
+    expect( myself ).to.win( iPod.SHUFFLE );
+
+  } );
+} );
+
+```
+
+<br>
+
+João Lucas ( @jlucasps ) & Rafael Guedes ( @rafaelmenta )
+
+Front In BH - 2014
