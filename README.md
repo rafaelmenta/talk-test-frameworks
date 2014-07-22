@@ -70,6 +70,12 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ----
 
+## Testes em front-end
+
+![Diagrama básico de testes em front-end](img/test-diagram.png)
+
+----
+
 ## Ferramentas de testes
 
 ![Ferramentas de testes](img/tools.jpg)
