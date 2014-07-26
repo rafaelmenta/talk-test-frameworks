@@ -14,7 +14,7 @@ describe('Song', function() {
         expect(song.isPlaying).to.be.true;
     });
 
-    it( 'should call nextSong after X seconts', function( ) {
+    it( 'should call nextSong after X seconds', function( ) {
         var clock = sinon.useFakeTimers(),
             nextSong = sinon.stub( Song.prototype, 'nextSong' );
 

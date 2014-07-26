@@ -1,6 +1,8 @@
 UI Test Frameworks
 ==================
 
+[![Avenue Code](img/avenuecode.jpg)](http://www.avenuecode.com.br/)
+
 <br>
 
 João Lucas & Rafael Guedes
@@ -76,6 +78,28 @@ Sim. Isso também significa integrá-los ao processo de build.
 
 ----
 
+## Criando o primeiro teste
+
+```javascript
+describe("My first test suite", function() {
+
+  beforeEach(function() {
+    // setup
+  });
+
+  afterEach(function() {
+    // cleanup
+  });
+
+  it('should fail', function() {
+    true.should.be.false;
+  });
+
+});
+```
+
+----
+
 ## Ferramentas de testes
 
 ![Ferramentas de testes](img/tools.jpg)
@@ -139,7 +163,7 @@ test('sum', function( ) {
 
 ```javascript
 describe("a promise test", function() {
-  before(function() { return db.save([mark, loki, jane]); });
+  before(function() { return db.save([mark, amir, zeo]); });
 
   it('should give me correct user count with callback', function(done) {
     db.find({ type: 'User'}).then(function(data, err) {
@@ -147,9 +171,8 @@ describe("a promise test", function() {
       done();
     });
   });
-
   it('should give me correct user count with promise', function() {
-    db.find({ type: 'User' }).should.eventually.have.length(3);
+    return db.find({ type: 'User' }).should.eventually.have.length(3);
   });
 });
 ```
@@ -324,22 +347,6 @@ module.exports = function(config) {
       'test/**/*.js'
     ],
     // ...
-```
-
-----
-
-## Criando o primeiro teste
-
-test/test.js
-
-```javascript
-describe("My first test suite", function() {
-
-  it('should fail', function() {
-    true.should.be.false;
-  });
-
-});
 ```
 
 ----
@@ -569,7 +576,7 @@ it( 'should play the only song and exit the player', function() {
 describe( "AVENUE CODE", function() {
   it( "IS HIRING!", function() {
 
-    expect( attendance ).to.send( CV.pdf );
+    expect( audience ).to.send( CV.pdf );
 
     expect( myself ).to.win( iPod.SHUFFLE );
 
