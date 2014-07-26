@@ -3,6 +3,8 @@ UI Test Frameworks
 
 [![Avenue Code](img/avenuecode.jpg)](http://www.avenuecode.com.br/)
 
+[![Front<in> BH](img/front-in-bh-2014-cover.jpg)](http://frontinbh.com.br/)
+
 <br>
 
 João Lucas & Rafael Guedes
@@ -570,7 +572,7 @@ it( 'should play the only song and exit the player', function() {
 
 ## UI Test Frameworks
 
-[![Avenue Code](img/avenuecode.jpg)](http://www.avenuecode.com.br/)
+[![Avenue Code](img/avenuecode.jpg)](http://www.avenuecode.com.br/) [![Front<in> BH](img/front-in-bh-2014-cover.jpg)](http://frontinbh.com.br/)
 
 ```javascript
 describe( "AVENUE CODE", function() {
@@ -586,6 +588,8 @@ describe( "AVENUE CODE", function() {
 ```
 
 <br>
+
+Muito Obrigado!
 
 João Lucas ( @jlucasps ) & Rafael Guedes ( @rafaelmenta )
 
