@@ -21,7 +21,7 @@ describe('Player', function() {
             playNextStub.restore();
         });
 
-        it.only( 'should play the only song and exit the player', function() {
+        it( 'should play the only song and exit the player', function() {
             var clock = sinon.useFakeTimers(),
                 song = new Song( 120 ),
                 playNextSpy = sinon.spy( player, 'playNext' ),
