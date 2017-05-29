@@ -158,7 +158,7 @@ test('sum', function( ) {
 
 ## Ferramentas de testes
 
-[![Mocha](img/mocha.png)](http://visionmedia.github.io/mocha/)
+[![Mocha](img/mocha.png)](http://mochajs.org/)
 
 - Framework flexível e modular para node.js e browser
 - Promise test, ```before``` & ```after``` hooks
